@@ -15,13 +15,13 @@ export function scheduleReview(previous = {}, result, date = new Date()) {
   const next = new Date(date.getFullYear(), date.getMonth(), date.getDate()+days, 12);
   return { ...previous, status: 'practiced', lastResult: result, streak, dueDate: localDay(next), updatedAt: date.toISOString() };
 }
-export function finishSession(state, result, date = new Date()) {
+export function finishSession(state, result, date = new Date(), {selfReported=false} = {}) {
   if (!state.active) throw new Error('还没有进行中的学习');
   const active = state.active;
-  if (result === 'independent' && active.hintsUsed.length) throw new Error('这次使用过提示，请重新无提示串背，或记录为需要提示。');
+  if (!selfReported && result === 'independent' && active.hintsUsed.length) throw new Error('这次使用过提示，请重新尝试，或记录为需要提示。');
   const next = structuredClone(state);
   next.progress[active.lessonId] = scheduleReview(next.progress[active.lessonId], result, date);
-  next.sessions.push({ lessonId: active.lessonId, result, hintCount: active.hintsUsed.length, finishedAt: date.toISOString(), timezone: Intl.DateTimeFormat().resolvedOptions().timeZone });
+  next.sessions.push({ lessonId: active.lessonId, result, hintCount: selfReported?0:active.hintsUsed.length, ...(selfReported?{assessmentMode:'self-reported'}:{}), finishedAt: date.toISOString(), timezone: Intl.DateTimeFormat().resolvedOptions().timeZone });
   next.sessions = next.sessions.slice(-1000);
   next.active = null;
   return next;

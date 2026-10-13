@@ -1,4 +1,4 @@
-const SHELL='pocket-nce-shell-v3',AUDIO='pocket-nce-audio-v1';
+const SHELL='pocket-nce-shell-v5',AUDIO='pocket-nce-audio-v1';
 const files=['./','./index.html','./styles.css','./main.js','./core.js','./storage.js','./player.js','./offline.js','./icons.js','./data/lessons.js','./manifest.webmanifest','./icon.svg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(SHELL).then(cache=>cache.addAll(files)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('pocket-nce-shell-')&&k!==SHELL).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));

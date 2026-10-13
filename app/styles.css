@@ -8,6 +8,8 @@
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 :root{--muted:#627267}
 body{color:var(--ink)}
+.recall-passage{margin:22px 0;font:var(--body-size)/1.9 Georgia,'Times New Roman',serif;overflow-wrap:anywhere}
+.recall-passage p+p{margin-top:1em}.recall-sentence.current{background:var(--pale);border-radius:3px}
 .time-choices button,.stages button,.hint-levels button,.sentence-tools button,.dock-action .primary,.save-warning button{min-height:44px}
 .time-choices button{min-width:44px}.sentence-play{width:44px;left:-5px}.sentence{padding-left:43px}
 .focus-label{align-items:center}.learn-header .icon-button{flex-shrink:0}

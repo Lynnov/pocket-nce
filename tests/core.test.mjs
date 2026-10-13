@@ -37,6 +37,14 @@ test('backup round trip retains active learning and word records', () => {
   state.words['1:private'] = { lessonId: 1, word: 'private', familiar: false };
   assert.deepEqual(parseBackup(makeBackup(state)), state);
 });
+test('full-text reading accepts explicit self-assessment without a hidden-text exercise',()=>{
+ const state=initialState();
+ state.active={lessonId:1,stage:'recall',hintsUsed:['level:full']};
+ const next=finishSession(state,'independent',new Date(2026,9,13),{selfReported:true});
+ assert.equal(next.progress[1].lastResult,'independent');
+ assert.equal(next.sessions[0].assessmentMode,'self-reported');
+ assert.equal(next.sessions[0].hintCount,0);
+});
 test('malformed, unsupported and untrusted backups are rejected', () => {
   for (const text of ['no json', '{}', '{"version":999,"data":{}}', '{"version":1,"data":{"__proto__":{"polluted":true}}}']) {
     assert.throws(() => parseBackup(text));

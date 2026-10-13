@@ -77,9 +77,17 @@ function sentenceText(lesson,sentence){
 }
 function sentenceBody(lesson,sentence){
   const a=state.active,hiddenStage=['memorize','recall'].includes(a.stage),level=hiddenStage?a.hint:'full';
-  if(level==='full'||revealed.has(sentence.id))return `<div class="sentence-text">${sentenceText(lesson,sentence)}</div>`;
+  if(level==='full'||revealed.has(sentence.id))return `<div class="sentence-text">${a.stage==='recall'?escape(sentence.text):sentenceText(lesson,sentence)}</div>`;
   if(level==='keywords')return `<div class="sentence-cue">${escape(sentence.cue)}</div>${button('reveal','查看原句','text-button',`data-sentence="${sentence.id}"`)}`;
   return `<div class="hidden-line"><span class="memory-bars" aria-label="英文已隐藏"><i></i><i></i><i></i></span>${button('reveal',`${icon('eye',14)} 提示`,'',`data-sentence="${sentence.id}"`)}</div>`;
+}
+function recallPassage(lesson){
+  const paragraphs=[];
+  lesson.sentences.forEach((sentence,index)=>{
+    if(index===0||sentence.paragraph!==lesson.sentences[index-1].paragraph)paragraphs.push([]);
+    paragraphs.at(-1).push(`<span class="recall-sentence">${escape(sentence.text)}</span>`);
+  });
+  return `<article class="recall-passage" aria-label="课文完整原文">${paragraphs.map(sentences=>`<p>${sentences.join(' ')}</p>`).join('')}</article>`;
 }
 function study(){
   const l=currentLesson(),a=state.active;if(!l)return home();
@@ -91,9 +99,8 @@ function study(){
   <div class="stages" role="group" aria-label="学习阶段">${stages.map(stage=>button('stage',stageLabels[stage],stage===a.stage?'active':'',`data-stage="${stage}" aria-pressed="${stage===a.stage}"`)).join('')}</div>
   ${a.stage==='understand'?`<div class="context-toggle">${button('summary',`${icon('book',14)} ${shownSummary?'收起文章大意':'先了解文章大意'}`,'text-button')}${button('translation',shownTranslations?'隐藏译意':'显示译意','text-button')}</div>${shownSummary?`<section class="summary"><span class="overline">文章大意</span>${escape(l.summary)}</section>`:''}`:''}
   ${a.stage==='practice'?'<p class="inline-tip">先听一句，再跟着读。开启“跟读留白”，会给你留出开口的时间。</p>':''}
-  ${['memorize','recall'].includes(a.stage)?`<div class="hint-levels" aria-label="背诵提示级别">${[['full','完整英文'],['keywords','关键词'],['hidden','隐藏英文']].map(([level,label])=>button('hint',label,level===a.hint?'active':'',`data-level="${level}" aria-pressed="${level===a.hint}"`)).join('')}</div>`:''}
-  ${a.stage==='recall'?`<div class="context-toggle"><span>尝试把整个故事连起来。</span>${button('restart-recall','重新无提示尝试','text-button')}</div><p class="recall-count">本轮已使用 ${a.hintsUsed.length} 次提示 · ${l.sentences.length} 个句段</p>`:''}
-  ${practice?`<div class="focus-label"><span>句段 ${String(a.index+1).padStart(2,'0')} / ${l.sentences.length}</span>${button('weak',`${icon('mark',14)} ${weak.includes(s.id)?'已标记':'标记难句'}`,'text-button',`data-sentence="${s.id}"`)}</div><article class="focus-card">${sentenceBody(l,s)}${shownTranslations?`<p class="translation">${escape(s.translation)}</p>`:''}</article><div class="focus-nav">${button('previous','上一句','','aria-label="上一句"')}${button('translation',shownTranslations?'收起译意':'看句意与解释','','')}${button('next','下一句','','aria-label="下一句"')}</div>${shownTranslations&&s.note?`<p class="inline-tip">${escape(s.note)}</p>`:''}`:
+  ${a.stage==='memorize'?`<div class="hint-levels" aria-label="背诵提示级别">${[['full','完整英文'],['keywords','关键词'],['hidden','隐藏英文']].map(([level,label])=>button('hint',label,level===a.hint?'active':'',`data-level="${level}" aria-pressed="${level===a.hint}"`)).join('')}</div>`:''}
+  ${a.stage==='recall'?recallPassage(l):practice?`<div class="focus-label"><span>句段 ${String(a.index+1).padStart(2,'0')} / ${l.sentences.length}</span>${button('weak',`${icon('mark',14)} ${weak.includes(s.id)?'已标记':'标记难句'}`,'text-button',`data-sentence="${s.id}"`)}</div><article class="focus-card">${sentenceBody(l,s)}${shownTranslations?`<p class="translation">${escape(s.translation)}</p>`:''}</article><div class="focus-nav">${button('previous','上一句','','aria-label="上一句"')}${button('translation',shownTranslations?'收起译意':'看句意与解释','','')}${button('next','下一句','','aria-label="下一句"')}</div>${shownTranslations&&s.note?`<p class="inline-tip">${escape(s.note)}</p>`:''}`:
   `<div class="passage">${l.sentences.map((sentence,index)=>`<article id="sentence-${index}" class="sentence ${index===a.index?'current':''} ${index>0&&sentence.paragraph!==l.sentences[index-1].paragraph?'paragraph-start':''}">${button('sentence-play',icon('play',11),'sentence-play',`data-index="${index}" aria-label="播放第 ${index+1} 句"`)}${sentenceBody(l,sentence)}${shownTranslations?`<p class="translation">${escape(sentence.translation)}</p>`:''}<div class="sentence-tools">${sentence.note?button('note','句子解释','',`data-index="${index}"`):''}${button('weak',weak.includes(sentence.id)?'已标记难句':'标记难句',weak.includes(sentence.id)?'marked':'',`data-sentence="${sentence.id}"`)}</div></article>`).join('')}</div>`}
   ${a.stage==='understand'?`<div class="context-toggle">${button('focus',focusView?'展开整篇':'聚焦当前句','text-button')}<span>点击英文单词可查看释义</span></div>`:''}
   <p class="source-note">原文依据个人教材 · 第 ${l.printedPage} 页<br>配套美音 · 译意与提示用于辅助理解</p></div>
@@ -114,18 +121,18 @@ function render(keepScroll=false){
   lastRenderedRoute=r;
 }
 function savePosition(){const a=state.active;if(a&&route()===`learn/${a.lessonId}`){if(player.lesson?.id===a.lessonId&&player.status!=='idle'&&audio.currentTime>0){a.audioTime=audio.currentTime;a.audioMode=player.mode||'sentence';}a.scrollTop=Math.max(0,window.scrollY);persist();}}
-function markHint(key){if(state.active&&['memorize','recall'].includes(state.active.stage)){if(state.active.hintsUsed.length<1000)state.active.hintsUsed.push(key);persist();}}
+function markHint(key){if(state.active?.stage==='memorize'){if(state.active.hintsUsed.length<1000)state.active.hintsUsed.push(key);persist();}}
 function setStage(stage){
   if(state.active.stage===stage)return;
   savePosition();player.stop();state.active.stage=stage;state.active.scrollTop=0;shownTranslations=false;shownSummary=false;focusView=false;revealed.clear();
   if(stage==='memorize')state.active.hint='keywords';
-  if(stage==='recall'){state.active.hint='hidden';state.active.hintsUsed=[];}
+  if(stage==='recall'){state.active.hint='full';state.active.hintsUsed=[];}
   persist();render();window.scrollTo(0,0);
 }
 function onPlayback(status,index){
   if(!route().startsWith('learn/'))return;
   const a=state.active,l=currentLesson();if(!a||!l||player.lesson?.id!==a.lessonId)return;
-  if(Number.isInteger(index)&&index!==a.index){a.index=index;if(['practice','memorize'].includes(a.stage))render(true);else document.querySelectorAll('.sentence').forEach((el,i)=>el.classList.toggle('current',i===index));}
+  if(Number.isInteger(index)&&index!==a.index){a.index=index;if(['practice','memorize'].includes(a.stage))render(true);else document.querySelectorAll('.sentence,.recall-sentence').forEach((el,i)=>el.classList.toggle('current',i===index));}
   const label=$('#player-label'),control=$('#main-play');
   if(label)label.textContent=({playing:player.mode==='all'?'正在整篇播放':`正在播放第 ${a.index+1} 句`,shadow:'轮到你了 · 小声跟读这一句',waiting:'稍停一下，即将重播',paused:'已暂停 · 随时接着学',ended:'听完了，试着自己说一遍',idle:'美音原声 · 点击开始听读',error:'播放失败，请检查网络或离线下载'})[status]||'美音原声';
   if(control){const playing=['playing','shadow','waiting'].includes(status);control.innerHTML=icon(playing?'pause':'play',23);control.setAttribute('aria-label',playing?'暂停播放':'播放当前句');}
@@ -151,7 +158,7 @@ function wordSheet(word,sentenceId){
   const key=`${l.id}:${entry.word}`,saved=!!state.words[key];
   openSheet(`${sheetHeader('在这一句里')}<h3 class="dictionary-word">${escape(entry.word)}</h3><p class="phonetic">${escape(entry.phonetic||'')} ${escape(entry.pos)}</p><p class="dictionary-meaning">${escape(entry.meaning)}</p><div class="dictionary-example"><p>${escape(s?.text)}</p><small>${escape(s?.translation)}</small></div>${button('play-example',`${icon('volume',16)} 听这个句子`,'secondary',`data-index="${l.sentences.indexOf(s)}"`)}${button('save-word',`${icon(saved?'check':'plus',17)} ${saved?'已加入生词，再点移除':'加入我的生词'}`,'primary',`style="margin-top:16px" data-word="${escape(entry.word)}" data-sentence="${sentenceId}"`)}<p class="sheet-note">先记住它在当前句子中的意思。</p>`);
 }
-function finishSheet(){player.pause();openSheet(`${sheetHeader('这一次，记住了多少？')}<p class="sheet-note">本轮使用了 ${state.active.hintsUsed.length} 次提示。按真实感受记录，我们下次接着巩固。</p>${[['forgot','没背出','下次先从卡住的地方开始。'],['prompted','需要提示','能想起一部分，再巩固一次。'],['independent','独立背出','没有看提示，完整回忆了课文。']].map(([value,title,sub])=>button('result',`${icon(value==='independent'?'check':value==='prompted'?'eye':'repeat',21)}<span><strong>${title}</strong><small>${sub}</small></span>${icon('chevron',15)}`,'result-choice',`data-value="${value}"`)).join('')}`);}
+function finishSheet(){player.pause();openSheet(`${sheetHeader('这一次，记住了多少？')}<p class="sheet-note">按自己脱离原文后的回忆情况记录，我们下次接着巩固。</p>${[['forgot','没背出','下次先从卡住的地方开始。'],['prompted','需要提示','能想起一部分，再巩固一次。'],['independent','独立背出','不看原文，也能完整回忆课文。']].map(([value,title,sub])=>button('result',`${icon(value==='independent'?'check':value==='prompted'?'eye':'repeat',21)}<span><strong>${title}</strong><small>${sub}</small></span>${icon('chevron',15)}`,'result-choice',`data-value="${value}"`)).join('')}`);}
 function exportProgress(){const blob=new Blob([makeBackup(state)],{type:'application/json'}),url=URL.createObjectURL(blob),anchor=document.createElement('a');anchor.href=url;anchor.download=`口袋新概念-进度-${localDay()}.json`;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),10000);toast('已生成进度备份，请保存到“文件”。');}
 async function refreshDownloads(){await Promise.all(lessons.map(async l=>{try{downloads.set(l.id,await isDownloaded(l)?'ready':'none');}catch{downloads.set(l.id,'none');}}));if(route()==='lessons')render(true);}
 
@@ -174,7 +181,6 @@ document.addEventListener('click',async event=>{
     else if(action==='focus'){focusView=!focusView;render(true);}
     else if(action==='hint'){a.hint=target.dataset.level;if(a.hint!=='hidden')markHint(`level:${a.hint}`);revealed.clear();persist();render(true);}
     else if(action==='reveal'){markHint(target.dataset.sentence);revealed.add(target.dataset.sentence);render(true);}
-    else if(action==='restart-recall'){player.stop();a.hintsUsed=[];a.hint='hidden';shownTranslations=false;revealed.clear();a.index=0;persist();closeSheet();render(true);toast('新的一轮，先试着独立回忆。');}
     else if(action==='next'||action==='previous'){player.stop();a.index=Math.max(0,Math.min(l.sentences.length-1,a.index+(action==='next'?1:-1)));a.audioTime=l.sentences[a.index].start;a.audioMode='sentence';persist();render(true);}
     else if(action==='sentence-play'||action==='play-example'){await playSentence(Number(target.dataset.index));}
     else if(action==='play'){if(['playing','shadow','waiting'].includes(player.status)){player.pause();savePosition();}else if(a.audioMode==='all'){markHint('audio:all');await player.playAll(state.settings.rate,a.audioTime);}else await playSentence(a.index,a.audioTime);}
@@ -190,8 +196,8 @@ document.addEventListener('click',async event=>{
     else if(action==='word-rate'){state.words[target.dataset.key].familiar=target.dataset.value==='true';persist();render(true);toast(target.dataset.value==='true'?'记住了，也记住它的用法。':'已保留在待复习生词中。');}
     else if(action==='finish')finishSheet();
     else if(action==='result'){
-      try{const lessonId=a.lessonId;state=finishSession(state,target.dataset.value);player.stop();persist();history.replaceState(null,'','#today');render();openSheet(`<div class="success"><div class="success-mark">${icon('check',30)}</div><h2>今天，又向前一点。</h2><p>已记录：${resultLabels[target.dataset.value]}<br>下次复习：${state.progress[lessonId].dueDate}</p>${button('navigate','回到今天','primary','data-page="today"')}</div>`);}
-      catch(error){openSheet(`${sheetHeader('再试一次，或如实记录')}<p class="sheet-note">${escape(error.message)}</p>${button('restart-recall','重新无提示串背','primary')}${button('result','保存为需要提示','secondary','data-value="prompted" style="width:100%;margin-top:12px"')}`);}
+      try{const lessonId=a.lessonId;state=finishSession(state,target.dataset.value,new Date(),{selfReported:true});player.stop();persist();history.replaceState(null,'','#today');render();openSheet(`<div class="success"><div class="success-mark">${icon('check',30)}</div><h2>今天，又向前一点。</h2><p>已记录：${resultLabels[target.dataset.value]}<br>下次复习：${state.progress[lessonId].dueDate}</p>${button('navigate','回到今天','primary','data-page="today"')}</div>`);}
+      catch(error){toast(error.message);}
     }
     else if(action==='download'){
       const lesson=lessons.find(x=>x.id===Number(target.dataset.id));downloads.set(lesson.id,'loading');render(true);
