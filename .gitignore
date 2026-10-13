@@ -1,0 +1,18 @@
+# Local inspection output and generated artifacts
+tmp/
+output/
+
+# Local source materials and private learning records
+*.mp3
+*.pdf
+*.downloading
+private/
+backups/
+
+# Development output
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+!.env.example

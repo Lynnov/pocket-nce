@@ -1,0 +1,109 @@
+{
+  "checkedOn": "2026-10-13",
+  "purpose": "Material inventory for a personal iPhone H5 prototype; not a release content package",
+  "textbook": {
+    "path": "G:\\OneDrive\\狡发三窟.library\\images\\LCPLTJ7EKIOOJ.info\\新概念英语 第二册  by 路易亚历山大 (z-lib.org).pdf",
+    "pages": 443,
+    "sampledPagesImageBased": true
+  },
+  "studyGuide": {
+    "path": "G:\\课程文件\\第2册美音\\新概念英语 自学导读2 带书签.pdf",
+    "pages": 580
+  },
+  "audioInventory": {
+    "folder": "G:\\课程文件\\第2册美音",
+    "mp3Count": 96,
+    "totalBytes": 147829996,
+    "missingNumbers": [],
+    "duplicateNumbers": [],
+    "zeroByteFiles": [],
+    "subtitleFiles": [],
+    "ignoredPartialDownloads": [
+      "新概念英语全四册词汇详解.pdf.baiduyun.p.downloading",
+      "新概念英语西方文化拾贝.pdf.baiduyun.p.downloading"
+    ]
+  },
+  "sampleLessons": [
+    {
+      "lesson": 1,
+      "title": "A Private Conversation",
+      "audioPath": "G:\\课程文件\\第2册美音\\01－A Private Conversation.mp3",
+      "audioBytes": 1257269,
+      "audioSha256": "2ead72561abf5fb1c3184b1e8430351c9f8da33c6b3485ce476bb9a5171e6b94",
+      "durationSeconds": 78.579313,
+      "stream": {
+        "codec_name": "mp3",
+        "sample_rate": "44100",
+        "channels": 1
+      },
+      "decodePassed": true,
+      "decodeDiagnostics": "",
+      "pdfPage": 15,
+      "printedPage": 12,
+      "sourcePageVisuallyReviewed": true,
+      "sourceContains": [
+        "English passage",
+        "New words and expressions",
+        "Notes on the text",
+        "Chinese reference translation"
+      ],
+      "transcriptionStatus": "not_started",
+      "audioTextMatchStatus": "not_listened",
+      "sentenceAlignmentStatus": "not_started"
+    },
+    {
+      "lesson": 2,
+      "title": "Breakfast or Lunch",
+      "audioPath": "G:\\课程文件\\第2册美音\\02－Breakfast or Lunch.mp3",
+      "audioBytes": 1301987,
+      "audioSha256": "c27c83d36baef396d339c8186efa430abb116a684cb429ddeb6d3b0b88631793",
+      "durationSeconds": 81.374188,
+      "stream": {
+        "codec_name": "mp3",
+        "sample_rate": "44100",
+        "channels": 1
+      },
+      "decodePassed": true,
+      "decodeDiagnostics": "",
+      "pdfPage": 19,
+      "printedPage": 16,
+      "sourcePageVisuallyReviewed": true,
+      "sourceContains": [
+        "English passage",
+        "New words and expressions",
+        "Notes on the text",
+        "Chinese reference translation"
+      ],
+      "transcriptionStatus": "not_started",
+      "audioTextMatchStatus": "not_listened",
+      "sentenceAlignmentStatus": "not_started"
+    },
+    {
+      "lesson": 3,
+      "title": "Please Send Me a Card",
+      "audioPath": "G:\\课程文件\\第2册美音\\03－Please Send Me a Card.mp3",
+      "audioBytes": 1219234,
+      "audioSha256": "4f5b6ac314cff87832639cdc9907dfdd55211636e95a19feeb4d3ffce070a7f2",
+      "durationSeconds": 76.202125,
+      "stream": {
+        "codec_name": "mp3",
+        "sample_rate": "44100",
+        "channels": 1
+      },
+      "decodePassed": true,
+      "decodeDiagnostics": "",
+      "pdfPage": 23,
+      "printedPage": 20,
+      "sourcePageVisuallyReviewed": true,
+      "sourceContains": [
+        "English passage",
+        "New words and expressions",
+        "Notes on the text",
+        "Chinese reference translation"
+      ],
+      "transcriptionStatus": "not_started",
+      "audioTextMatchStatus": "not_listened",
+      "sentenceAlignmentStatus": "not_started"
+    }
+  ]
+}
