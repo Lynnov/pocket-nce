@@ -1,0 +1,808 @@
+{
+  "date": "2026-10-13",
+  "method": "local ASR word matching, manually reviewed waveform silence boundaries, independent isolated-clip ASR checks",
+  "model": "Systran/faster-whisper-base.en",
+  "modelRevision": "3d3d5dee26484f91867d81cb899cfcf72b96be6c",
+  "versions": {
+    "faster-whisper": "1.2.1",
+    "ctranslate2": "4.8.2",
+    "numpy": "2.1.2"
+  },
+  "normalizedClipMatchCount": 45,
+  "normalization": [
+    "case and punctuation ignored",
+    "theater -> theatre",
+    "37 -> thirty seven",
+    "ant -> aunt",
+    "apostrophes and hyphens tokenize as separators"
+  ],
+  "audio": [
+    {
+      "lesson": 1,
+      "file": "./audio/lesson-1.mp3",
+      "duration": 78.579313,
+      "sha256": "2ead72561abf5fb1c3184b1e8430351c9f8da33c6b3485ce476bb9a5171e6b94"
+    },
+    {
+      "lesson": 2,
+      "file": "./audio/lesson-2.mp3",
+      "duration": 81.374188,
+      "sha256": "c27c83d36baef396d339c8186efa430abb116a684cb429ddeb6d3b0b88631793"
+    },
+    {
+      "lesson": 3,
+      "file": "./audio/lesson-3.mp3",
+      "duration": 76.202125,
+      "sha256": "4f5b6ac314cff87832639cdc9907dfdd55211636e95a19feeb4d3ffce070a7f2"
+    }
+  ],
+  "clipChecks": [
+    {
+      "id": "1-1",
+      "start": 15.88,
+      "end": 18.82,
+      "source": "Last week I went to the theatre.",
+      "recognized": "Last week, I went to the theater.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-2",
+      "start": 19.37,
+      "end": 21.53,
+      "source": "I had a very good seat.",
+      "recognized": "I had a very good seat.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-3",
+      "start": 22.04,
+      "end": 24.37,
+      "source": "The play was very interesting.",
+      "recognized": "The play was very interesting.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-4",
+      "start": 25.04,
+      "end": 26.81,
+      "source": "I did not enjoy it.",
+      "recognized": "I did not enjoy it.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-5",
+      "start": 27.42,
+      "end": 31.36,
+      "source": "A young man and a young woman were sitting behind me.",
+      "recognized": "A young man and a young woman were sitting behind me.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-6",
+      "start": 31.95,
+      "end": 34.01,
+      "source": "They were talking loudly.",
+      "recognized": "They were talking loudly.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-7",
+      "start": 34.57,
+      "end": 36.73,
+      "source": "I got very angry.",
+      "recognized": "I got very angry.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-8",
+      "start": 37.39,
+      "end": 39.99,
+      "source": "I could not hear the actors.",
+      "recognized": "I could not hear the actors.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-9",
+      "start": 40.6,
+      "end": 42.02,
+      "source": "I turned round.",
+      "recognized": "I turned round.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-10",
+      "start": 42.78,
+      "end": 46.24,
+      "source": "I looked at the man and the woman angrily.",
+      "recognized": "I looked at the man and the woman angrily.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-11",
+      "start": 47.21,
+      "end": 49.84,
+      "source": "They did not pay any attention.",
+      "recognized": "They did not pay any attention.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-12",
+      "start": 50.65,
+      "end": 54.27,
+      "source": "In the end, I could not bear it.",
+      "recognized": "In the end, I could not bear it.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-13",
+      "start": 54.95,
+      "end": 56.72,
+      "source": "I turned round again.",
+      "recognized": "I turned round again.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-14",
+      "start": 57.43,
+      "end": 62.64,
+      "source": "‘I can’t hear a word!’ I said angrily.",
+      "recognized": "I can't hear a word,\" I said angrily.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-15",
+      "start": 63.42,
+      "end": 68.42,
+      "source": "‘It’s none of your business,’ the young man said rudely.",
+      "recognized": "It's none of your business.\" The young man said rudely.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "1-16",
+      "start": 68.96,
+      "end": 71.85,
+      "source": "‘This is a private conversation!’",
+      "recognized": "This is a private conversation.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-1",
+      "start": 15.98,
+      "end": 17.27,
+      "source": "It was Sunday.",
+      "recognized": "It was Sunday.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-2",
+      "start": 17.96,
+      "end": 21.29,
+      "source": "I never get up early on Sundays.",
+      "recognized": "I never get up early on Sundays.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-3",
+      "start": 22.02,
+      "end": 25.83,
+      "source": "I sometimes stay in bed until lunchtime.",
+      "recognized": "I sometimes stay in bed until lunchtime.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-4",
+      "start": 26.8,
+      "end": 30.14,
+      "source": "Last Sunday I got up very late.",
+      "recognized": "Last Sunday, I got up very late.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-5",
+      "start": 31.04,
+      "end": 32.98,
+      "source": "I looked out of the window.",
+      "recognized": "I looked out of the window.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-6",
+      "start": 33.43,
+      "end": 35.2,
+      "source": "It was dark outside.",
+      "recognized": "It was dark outside.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-7",
+      "start": 35.82,
+      "end": 38.99,
+      "source": "‘What a day!’ I thought.",
+      "recognized": "What a day, I thought.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-8",
+      "start": 39.59,
+      "end": 41.55,
+      "source": "‘It’s raining again.’",
+      "recognized": "It's raining again.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-9",
+      "start": 42.58,
+      "end": 45.34,
+      "source": "Just then, the telephone rang.",
+      "recognized": "Just then, the telephone rang.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-10",
+      "start": 46.02,
+      "end": 47.88,
+      "source": "It was my aunt Lucy.",
+      "recognized": "it was my Aunt Lucy.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-11",
+      "start": 49.0,
+      "end": 52.55,
+      "source": "‘I’ve just arrived by train,’ she said.",
+      "recognized": "I've just arrived by train,\" she said.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-12",
+      "start": 53.07,
+      "end": 54.96,
+      "source": "‘I’m coming to see you.’",
+      "recognized": "I'm coming to see you.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-13",
+      "start": 55.99,
+      "end": 59.74,
+      "source": "‘But I’m still having breakfast,’ I said.",
+      "recognized": "But I'm still having breakfast,\" I said.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-14",
+      "start": 60.53,
+      "end": 63.24,
+      "source": "‘What are you doing?’ she asked.",
+      "recognized": "What are you doing?\" she asked.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-15",
+      "start": 63.8,
+      "end": 66.85,
+      "source": "‘I’m having breakfast,’ I repeated.",
+      "recognized": "I'm having breakfast.\" I repeated",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-16",
+      "start": 67.38,
+      "end": 69.82,
+      "source": "‘Dear me,’ she said.",
+      "recognized": "Dear me, she said",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-17",
+      "start": 70.37,
+      "end": 72.85,
+      "source": "‘Do you always get up so late?",
+      "recognized": "Do you always get up so late?",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "2-18",
+      "start": 73.36,
+      "end": 74.85,
+      "source": "It’s one o’clock!’",
+      "recognized": "It's one o'clock.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "3-1",
+      "start": 16.16,
+      "end": 19.95,
+      "source": "Postcards always spoil my holidays.",
+      "recognized": "Postcards always spoil my holidays.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "3-2",
+      "start": 20.98,
+      "end": 23.67,
+      "source": "Last summer, I went to Italy.",
+      "recognized": "Last summer, I went to Italy.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "3-3",
+      "start": 24.24,
+      "end": 28.31,
+      "source": "I visited museums and sat in public gardens.",
+      "recognized": "I visited museums and sat in public gardens.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "3-4",
+      "start": 28.92,
+      "end": 32.69,
+      "source": "A friendly waiter taught me a few words of Italian.",
+      "recognized": "A friendly waiter taught me a few words of Italian.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "3-5",
+      "start": 33.41,
+      "end": 35.22,
+      "source": "Then he lent me a book.",
+      "recognized": "Then he lent me a book.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "3-6",
+      "start": 36.1,
+      "end": 40.74,
+      "source": "I read a few lines, but I did not understand a word.",
+      "recognized": "I read a few lines, but I did not understand a word.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "3-7",
+      "start": 41.77,
+      "end": 45.42,
+      "source": "Every day I thought about postcards.",
+      "recognized": "Every day I thought about postcards.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "3-8",
+      "start": 46.06,
+      "end": 51.95,
+      "source": "My holidays passed quickly, but I did not send cards to my friends.",
+      "recognized": "My holidays passed quickly, but I did not send cards to my friends.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "3-9",
+      "start": 52.96,
+      "end": 56.76,
+      "source": "On the last day I made a big decision.",
+      "recognized": "On the last day, I made a big decision.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "3-10",
+      "start": 57.46,
+      "end": 62.18,
+      "source": "I got up early and bought thirty-seven cards.",
+      "recognized": "I got up early and bought 37 cards.",
+      "exactNormalizedMatch": true
+    },
+    {
+      "id": "3-11",
+      "start": 63.06,
+      "end": 69.89,
+      "source": "I spent the whole day in my room, but I did not write a single card!",
+      "recognized": "I spent the whole day in my room, but I did not write a single card.",
+      "exactNormalizedMatch": true
+    }
+  ],
+  "rawWordAlignment": [
+    {
+      "id": "1-1",
+      "start": 15.34,
+      "end": 18.67,
+      "text": "Last week I went to the theatre.",
+      "wordStart": 15.44,
+      "wordEnd": 18.52,
+      "minProbability": 0.4044027328491211
+    },
+    {
+      "id": "1-2",
+      "start": 19.3,
+      "end": 21.31,
+      "text": "I had a very good seat.",
+      "wordStart": 19.4,
+      "wordEnd": 21.16,
+      "minProbability": 0.9922394752502441
+    },
+    {
+      "id": "1-3",
+      "start": 22.08,
+      "end": 24.11,
+      "text": "The play was very interesting.",
+      "wordStart": 22.18,
+      "wordEnd": 23.96,
+      "minProbability": 0.9918973445892334
+    },
+    {
+      "id": "1-4",
+      "start": 24.96,
+      "end": 26.77,
+      "text": "I did not enjoy it.",
+      "wordStart": 25.06,
+      "wordEnd": 26.62,
+      "minProbability": 0.9925375580787659
+    },
+    {
+      "id": "1-5",
+      "start": 27.34,
+      "end": 31.29,
+      "text": "A young man and a young woman were sitting behind me.",
+      "wordStart": 27.44,
+      "wordEnd": 31.14,
+      "minProbability": 0.008113458752632141
+    },
+    {
+      "id": "1-6",
+      "start": 31.76,
+      "end": 33.59,
+      "text": "They were talking loudly.",
+      "wordStart": 31.86,
+      "wordEnd": 33.44,
+      "minProbability": 0.9868115782737732
+    },
+    {
+      "id": "1-7",
+      "start": 34.24,
+      "end": 36.45,
+      "text": "I got very angry.",
+      "wordStart": 34.34,
+      "wordEnd": 36.3,
+      "minProbability": 0.9332820773124695
+    },
+    {
+      "id": "1-8",
+      "start": 37.0,
+      "end": 39.65,
+      "text": "I could not hear the actors.",
+      "wordStart": 37.1,
+      "wordEnd": 39.5,
+      "minProbability": 0.9745889902114868
+    },
+    {
+      "id": "1-9",
+      "start": 40.06,
+      "end": 41.77,
+      "text": "I turned round.",
+      "wordStart": 40.16,
+      "wordEnd": 41.62,
+      "minProbability": 0.9171614646911621
+    },
+    {
+      "id": "1-10",
+      "start": 42.12,
+      "end": 45.93,
+      "text": "I looked at the man and the woman angrily.",
+      "wordStart": 42.22,
+      "wordEnd": 45.78,
+      "minProbability": 0.958480954170227
+    },
+    {
+      "id": "1-11",
+      "start": 46.68,
+      "end": 49.57,
+      "text": "They did not pay any attention.",
+      "wordStart": 46.78,
+      "wordEnd": 49.42,
+      "minProbability": 0.9812940359115601
+    },
+    {
+      "id": "1-12",
+      "start": 50.3,
+      "end": 54.19,
+      "text": "In the end, I could not bear it.",
+      "wordStart": 50.4,
+      "wordEnd": 54.04,
+      "minProbability": 0.936235785484314
+    },
+    {
+      "id": "1-13",
+      "start": 54.42,
+      "end": 56.43,
+      "text": "I turned round again.",
+      "wordStart": 54.52,
+      "wordEnd": 56.28,
+      "minProbability": 0.974532961845398
+    },
+    {
+      "id": "1-14",
+      "start": 56.78,
+      "end": 62.35,
+      "text": "‘I can’t hear a word!’ I said angrily.",
+      "wordStart": 56.88,
+      "wordEnd": 62.2,
+      "minProbability": 0.34770360589027405
+    },
+    {
+      "id": "1-15",
+      "start": 63.28,
+      "end": 68.37,
+      "text": "‘It’s none of your business,’ the young man said rudely.",
+      "wordStart": 63.38,
+      "wordEnd": 68.22,
+      "minProbability": 0.6678679138422012
+    },
+    {
+      "id": "1-16",
+      "start": 68.94,
+      "end": 71.29,
+      "text": "‘This is a private conversation!’",
+      "wordStart": 69.04,
+      "wordEnd": 71.14,
+      "minProbability": 0.1115514412522316
+    },
+    {
+      "id": "2-1",
+      "start": 15.78,
+      "end": 16.97,
+      "text": "It was Sunday.",
+      "wordStart": 15.88,
+      "wordEnd": 16.82,
+      "minProbability": 0.9211618304252625
+    },
+    {
+      "id": "2-2",
+      "start": 17.92,
+      "end": 20.95,
+      "text": "I never get up early on Sundays.",
+      "wordStart": 18.02,
+      "wordEnd": 20.8,
+      "minProbability": 0.9515356421470642
+    },
+    {
+      "id": "2-3",
+      "start": 21.84,
+      "end": 25.71,
+      "text": "I sometimes stay in bed until lunchtime.",
+      "wordStart": 21.94,
+      "wordEnd": 25.56,
+      "minProbability": 0.022628724575042725
+    },
+    {
+      "id": "2-4",
+      "start": 26.2,
+      "end": 29.99,
+      "text": "Last Sunday I got up very late.",
+      "wordStart": 26.3,
+      "wordEnd": 29.84,
+      "minProbability": 0.729925811290741
+    },
+    {
+      "id": "2-5",
+      "start": 30.42,
+      "end": 32.75,
+      "text": "I looked out of the window.",
+      "wordStart": 30.52,
+      "wordEnd": 32.6,
+      "minProbability": 0.9741863012313843
+    },
+    {
+      "id": "2-6",
+      "start": 33.28,
+      "end": 34.73,
+      "text": "It was dark outside.",
+      "wordStart": 33.38,
+      "wordEnd": 34.58,
+      "minProbability": 0.9917580485343933
+    },
+    {
+      "id": "2-7",
+      "start": 35.46,
+      "end": 38.83,
+      "text": "‘What a day!’ I thought.",
+      "wordStart": 35.56,
+      "wordEnd": 38.68,
+      "minProbability": 0.2522588074207306
+    },
+    {
+      "id": "2-8",
+      "start": 39.4,
+      "end": 41.29,
+      "text": "‘It’s raining again.’",
+      "wordStart": 39.5,
+      "wordEnd": 41.14,
+      "minProbability": 0.9763805568218231
+    },
+    {
+      "id": "2-9",
+      "start": 41.94,
+      "end": 45.17,
+      "text": "Just then, the telephone rang.",
+      "wordStart": 42.04,
+      "wordEnd": 45.02,
+      "minProbability": 0.49184539914131165
+    },
+    {
+      "id": "2-10",
+      "start": 45.74,
+      "end": 47.57,
+      "text": "It was my aunt Lucy.",
+      "wordStart": 45.84,
+      "wordEnd": 47.42,
+      "minProbability": 0.008262529037892818
+    },
+    {
+      "id": "2-11",
+      "start": 48.42,
+      "end": 52.35,
+      "text": "‘I’ve just arrived by train,’ she said.",
+      "wordStart": 48.52,
+      "wordEnd": 52.2,
+      "minProbability": 0.4570484720170498
+    },
+    {
+      "id": "2-12",
+      "start": 52.74,
+      "end": 54.89,
+      "text": "‘I’m coming to see you.’",
+      "wordStart": 52.84,
+      "wordEnd": 54.74,
+      "minProbability": 0.8505373597145081
+    },
+    {
+      "id": "2-13",
+      "start": 55.32,
+      "end": 59.61,
+      "text": "‘But I’m still having breakfast,’ I said.",
+      "wordStart": 55.42,
+      "wordEnd": 59.46,
+      "minProbability": 0.3028472661972046
+    },
+    {
+      "id": "2-14",
+      "start": 60.1,
+      "end": 62.91,
+      "text": "‘What are you doing?’ she asked.",
+      "wordStart": 60.2,
+      "wordEnd": 62.76,
+      "minProbability": 0.2830193042755127
+    },
+    {
+      "id": "2-15",
+      "start": 63.42,
+      "end": 66.51,
+      "text": "‘I’m having breakfast,’ I repeated.",
+      "wordStart": 63.52,
+      "wordEnd": 66.36,
+      "minProbability": 0.906055748462677
+    },
+    {
+      "id": "2-16",
+      "start": 67.76,
+      "end": 69.75,
+      "text": "‘Dear me,’ she said.",
+      "wordStart": 67.86,
+      "wordEnd": 69.6,
+      "minProbability": 0.46525394916534424
+    },
+    {
+      "id": "2-17",
+      "start": 69.94,
+      "end": 72.69,
+      "text": "‘Do you always get up so late?",
+      "wordStart": 70.04,
+      "wordEnd": 72.54,
+      "minProbability": 0.9852761030197144
+    },
+    {
+      "id": "2-18",
+      "start": 72.98,
+      "end": 74.77,
+      "text": "It’s one o’clock!’",
+      "wordStart": 73.08,
+      "wordEnd": 74.62,
+      "minProbability": 0.18397067487239838
+    },
+    {
+      "id": "3-1",
+      "start": 15.8,
+      "end": 19.57,
+      "text": "Postcards always spoil my holidays.",
+      "wordStart": 15.9,
+      "wordEnd": 19.42,
+      "minProbability": 0.8094182908535004
+    },
+    {
+      "id": "3-2",
+      "start": 20.88,
+      "end": 23.51,
+      "text": "Last summer, I went to Italy.",
+      "wordStart": 20.98,
+      "wordEnd": 23.36,
+      "minProbability": 0.581758975982666
+    },
+    {
+      "id": "3-3",
+      "start": 24.18,
+      "end": 27.97,
+      "text": "I visited museums and sat in public gardens.",
+      "wordStart": 24.28,
+      "wordEnd": 27.82,
+      "minProbability": 0.7909172773361206
+    },
+    {
+      "id": "3-4",
+      "start": 27.72,
+      "end": 32.35,
+      "text": "A friendly waiter taught me a few words of Italian.",
+      "wordStart": 27.82,
+      "wordEnd": 32.2,
+      "minProbability": 0.02719980850815773
+    },
+    {
+      "id": "3-5",
+      "start": 33.36,
+      "end": 35.05,
+      "text": "Then he lent me a book.",
+      "wordStart": 33.46,
+      "wordEnd": 34.9,
+      "minProbability": 0.932083785533905
+    },
+    {
+      "id": "3-6",
+      "start": 36.06,
+      "end": 40.53,
+      "text": "I read a few lines, but I did not understand a word.",
+      "wordStart": 36.16,
+      "wordEnd": 40.38,
+      "minProbability": 0.9625597596168518
+    },
+    {
+      "id": "3-7",
+      "start": 41.56,
+      "end": 45.03,
+      "text": "Every day I thought about postcards.",
+      "wordStart": 41.66,
+      "wordEnd": 44.88,
+      "minProbability": 0.8376477360725403
+    },
+    {
+      "id": "3-8",
+      "start": 45.92,
+      "end": 51.73,
+      "text": "My holidays passed quickly, but I did not send cards to my friends.",
+      "wordStart": 46.02,
+      "wordEnd": 51.58,
+      "minProbability": 0.9769855737686157
+    },
+    {
+      "id": "3-9",
+      "start": 52.32,
+      "end": 56.55,
+      "text": "On the last day I made a big decision.",
+      "wordStart": 52.42,
+      "wordEnd": 56.4,
+      "minProbability": 0.5601082444190979
+    },
+    {
+      "id": "3-10",
+      "start": 56.3,
+      "end": 61.81,
+      "text": "I got up early and bought thirty-seven cards.",
+      "wordStart": 56.4,
+      "wordEnd": 61.66,
+      "minProbability": 0.7368271946907043
+    },
+    {
+      "id": "3-11",
+      "start": 62.96,
+      "end": 69.65,
+      "text": "I spent the whole day in my room, but I did not write a single card!",
+      "wordStart": 63.06,
+      "wordEnd": 69.5,
+      "minProbability": 0.9739907383918762
+    }
+  ]
+}
