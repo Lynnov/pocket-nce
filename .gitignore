@@ -8,11 +8,22 @@ output/
 *.downloading
 private/
 backups/
+口袋新概念-进度-*.json
 
 # Development output
 node_modules/
 dist/
 coverage/
+.cache/
+*.log
 .env
 .env.*
 !.env.example
+
+# Operating system and editor temporary files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
